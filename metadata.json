@@ -1,0 +1,6 @@
+{
+  "name": "LingoUp",
+  "description": "An AI-powered English learning app featuring spaced repetition vocabulary practice, interactive grammar exercises, and speech recognition for pronunciation training. Gamified with streaks and levels.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": []
+}
