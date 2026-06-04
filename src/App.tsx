@@ -19,6 +19,7 @@ import Dashboard from './components/Dashboard';
 import VocabularyPractice from './components/VocabularyPractice';
 import GrammarPractice from './components/GrammarPractice';
 import SpeechPractice from './components/SpeechPractice';
+import ThemeToggle from './components/ThemeToggle';
 
 export default function App() {
   const [view, setView] = useState<ViewState>('dashboard');
@@ -61,14 +62,14 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen flex text-slate-900 bg-[#F8FAFC]">
+    <div className="min-h-screen flex text-slate-900 bg-[#F8FAFC] dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200">
       {/* Sidebar for Desktop */}
-      <aside className="hidden md:flex flex-col w-64 bg-white border-r border-slate-200 p-6">
-        <div className="flex items-center gap-3 mb-10 px-2 text-indigo-600">
-          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+      <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 p-6 transition-colors duration-200">
+        <div className="flex items-center gap-3 mb-10 px-2 text-indigo-600 dark:text-indigo-400">
+          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200 dark:shadow-indigo-900/50">
             <GraduationCap size={24} />
           </div>
-          <span className="text-xl font-bold font-display tracking-tight text-slate-900">LingoUp</span>
+          <span className="text-xl font-bold font-display tracking-tight text-slate-900 dark:text-slate-100">LingoUp</span>
         </div>
 
         <nav className="flex-1 space-y-1">
@@ -78,8 +79,8 @@ export default function App() {
               onClick={() => setView(item.id as ViewState)}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                 view === item.id 
-                  ? 'bg-indigo-50 text-indigo-600 font-semibold shadow-sm' 
-                  : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
+                  ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold shadow-sm' 
+                  : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200'
               }`}
             >
               <item.icon size={20} />
@@ -95,12 +96,13 @@ export default function App() {
         </nav>
 
         <div className="mt-auto space-y-4">
-          <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+          <ThemeToggle variant="menu" />
+          <div className="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-100 dark:border-slate-700">
             <div className="flex items-center gap-2 mb-2">
               <Flame size={18} className="text-orange-500 fill-orange-500" />
               <span className="text-sm font-bold">{stats.streak} Day Streak</span>
             </div>
-            <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
               <div 
                 className="h-full bg-orange-500 transition-all duration-1000" 
                 style={{ width: `${Math.min((stats.streak / 7) * 100, 100)}%` }}
@@ -108,7 +110,7 @@ export default function App() {
             </div>
           </div>
           
-          <button className="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-slate-700 transition-colors w-full">
+          <button className="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors w-full">
             <SettingsIcon size={20} />
             <span className="text-sm font-medium">Settings</span>
           </button>
@@ -118,22 +120,24 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
         {/* Top Header */}
-        <header className="h-20 bg-white/50 backdrop-blur-sm border-b border-slate-200 flex items-center justify-between px-8 z-10">
-          <div className="md:hidden flex items-center gap-2 text-indigo-600">
+        <header className="h-20 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-4 md:px-8 z-10 transition-colors duration-200">
+          <div className="md:hidden flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
              <GraduationCap size={28} />
-             <span className="font-bold text-xl font-display text-slate-900">LingoUp</span>
+             <span className="font-bold text-xl font-display text-slate-900 dark:text-slate-100">LingoUp</span>
           </div>
 
-          <div className="hidden md:flex items-center gap-4 ml-auto">
-            <div className="flex items-center bg-amber-50 text-amber-700 px-4 py-1.5 rounded-full border border-amber-100 text-sm font-bold shadow-sm">
+          <div className="flex items-center gap-3 md:gap-4 ml-auto">
+            <ThemeToggle className="md:hidden" />
+            <div className="hidden md:flex items-center bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 px-4 py-1.5 rounded-full border border-amber-100 dark:border-amber-900/50 text-sm font-bold shadow-sm">
               <Trophy size={16} className="mr-2" />
               Lvl {stats.level}
             </div>
-            <div className="flex items-center bg-indigo-50 text-indigo-700 px-4 py-1.5 rounded-full border border-indigo-100 text-sm font-bold shadow-sm">
+            <div className="hidden md:flex items-center bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 px-4 py-1.5 rounded-full border border-indigo-100 dark:border-indigo-900/50 text-sm font-bold shadow-sm">
               <TrendingUp size={16} className="mr-2" />
               {stats.xp} XP
             </div>
-            <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold ring-4 ring-indigo-50">
+            <ThemeToggle className="hidden md:flex" />
+            <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold ring-4 ring-indigo-50 dark:ring-indigo-950">
               {stats.streak > 0 ? '🔥' : 'U'}
             </div>
           </div>
@@ -183,13 +187,13 @@ export default function App() {
         </div>
 
         {/* Mobile Navigation */}
-        <nav className="md:hidden h-20 bg-white border-t border-slate-200 flex items-center justify-around px-2 pb-2">
+        <nav className="md:hidden h-20 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center justify-around px-2 pb-2 transition-colors duration-200">
            {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setView(item.id as ViewState)}
               className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-colors ${
-                view === item.id ? 'text-indigo-600' : 'text-slate-400'
+                view === item.id ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500'
               }`}
             >
               <item.icon size={22} />

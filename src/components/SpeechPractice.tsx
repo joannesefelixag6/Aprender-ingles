@@ -87,15 +87,15 @@ export default function SpeechPractice({ stats, onUpdateStats, onComplete }: Spe
      return (
         <motion.div 
           initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-          className="max-w-md mx-auto bg-white rounded-[2.5rem] p-10 border border-slate-200 shadow-xl text-center"
+          className="max-w-md mx-auto bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 border border-slate-200 dark:border-slate-800 shadow-xl text-center"
         >
           <div className="w-20 h-20 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <Mic size={40} />
           </div>
-          <h2 className="text-3xl font-black font-display mb-2">Great Speaking!</h2>
-          <p className="text-slate-500 mb-8 font-medium">Your pronunciation is getting better every day.</p>
+          <h2 className="text-3xl font-black font-display mb-2 text-slate-900 dark:text-slate-100">Great Speaking!</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-8 font-medium">Your pronunciation is getting better every day.</p>
           
-          <div className="bg-rose-50 rounded-2xl p-6 mb-8 border border-rose-100 flex flex-col items-center gap-2">
+          <div className="bg-rose-50 dark:bg-rose-950/50 rounded-2xl p-6 mb-8 border border-rose-100 dark:border-rose-900/50 flex flex-col items-center gap-2">
               <p className="text-[10px] font-bold text-rose-400 uppercase tracking-widest">Total Speaking XP</p>
               <p className="text-3xl font-black text-rose-700">+{totalXp}</p>
           </div>
@@ -110,16 +110,16 @@ export default function SpeechPractice({ stats, onUpdateStats, onComplete }: Spe
   return (
     <div className="max-w-3xl mx-auto pb-20 space-y-12">
       <div className="flex items-center justify-between px-2">
-         <button onClick={onComplete} className="text-slate-400 hover:text-slate-900 transition-colors">
+         <button onClick={onComplete} className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
             <X size={24} />
          </button>
-         <div className="flex items-center gap-2 px-4 py-1.5 bg-rose-50 text-rose-600 rounded-full border border-rose-100 font-black text-xs uppercase tracking-widest">
+         <div className="flex items-center gap-2 px-4 py-1.5 bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 rounded-full border border-rose-100 dark:border-rose-900/50 font-black text-xs uppercase tracking-widest">
             Pronunciation Session
          </div>
          <span className="text-sm font-bold text-slate-400">{currentIdx + 1} / {phrases.length}</span>
       </div>
 
-      <div className="bg-white rounded-[3rem] p-10 md:p-16 border border-slate-200 shadow-2xl space-y-12 text-center relative overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-[3rem] p-10 md:p-16 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-12 text-center relative overflow-hidden">
         {/* Animated background rings when listening */}
         {isListening && (
             <div className="absolute inset-x-0 bottom-0 pointer-events-none">
@@ -134,10 +134,10 @@ export default function SpeechPractice({ stats, onUpdateStats, onComplete }: Spe
 
         <div className="space-y-6 relative z-10">
            <h4 className="text-sm font-black text-rose-400 uppercase tracking-[0.2em]">Read this out loud</h4>
-           <p className="text-3xl md:text-4xl font-bold font-display text-slate-800 leading-tight md:px-10">
+           <p className="text-3xl md:text-4xl font-bold font-display text-slate-800 dark:text-slate-100 leading-tight md:px-10">
              "{targetText}"
            </p>
-           <button className="inline-flex items-center gap-2 text-indigo-600 font-bold hover:bg-indigo-50 px-4 py-2 rounded-xl transition-all">
+           <button className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold hover:bg-indigo-50 dark:hover:bg-indigo-950/50 px-4 py-2 rounded-xl transition-all">
              <Volume2 size={20} />
              Listen Example
            </button>
@@ -186,7 +186,7 @@ export default function SpeechPractice({ stats, onUpdateStats, onComplete }: Spe
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
-              className="mt-6 p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 space-y-6 relative z-10"
+              className="mt-6 p-8 bg-slate-50 dark:bg-slate-800 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 space-y-6 relative z-10"
             >
               <div className="flex flex-wrap items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
@@ -198,12 +198,12 @@ export default function SpeechPractice({ stats, onUpdateStats, onComplete }: Spe
                    </div>
                    <div className="text-left">
                      <p className="text-xs font-black uppercase tracking-wider text-slate-400">Score</p>
-                     <p className="font-bold text-slate-800">{feedback.score > 80 ? 'Excellent!' : 'Good Effort'}</p>
+                     <p className="font-bold text-slate-800 dark:text-slate-100">{feedback.score > 80 ? 'Excellent!' : 'Good Effort'}</p>
                    </div>
                 </div>
 
-                <div className="flex-1 text-left md:border-l md:border-slate-200 md:pl-8">
-                  <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                <div className="flex-1 text-left md:border-l md:border-slate-200 dark:md:border-slate-700 md:pl-8">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                     {feedback.feedback}
                   </p>
                 </div>
@@ -211,7 +211,7 @@ export default function SpeechPractice({ stats, onUpdateStats, onComplete }: Spe
 
               <button 
                 onClick={handleNext}
-                className="w-full bg-white border-2 border-slate-200 py-4 rounded-2xl font-black text-indigo-600 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex items-center justify-center gap-2"
+                className="w-full bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 py-4 rounded-2xl font-black text-indigo-600 dark:text-indigo-400 hover:border-indigo-600 dark:hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-950/50 transition-all flex items-center justify-center gap-2"
               >
                 {currentIdx < phrases.length - 1 ? 'Next Phrase' : 'See Summary'}
                 <ArrowRight size={20} />
@@ -232,13 +232,13 @@ export default function SpeechPractice({ stats, onUpdateStats, onComplete }: Spe
 
 function TipCard({ icon: Icon, title, desc }: any) {
   return (
-    <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4">
-      <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-400">
+    <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-4">
+      <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400">
         <Icon size={24} />
       </div>
       <div>
-        <h5 className="font-bold text-slate-800 text-sm">{title}</h5>
-        <p className="text-xs text-slate-500 font-medium">{desc}</p>
+        <h5 className="font-bold text-slate-800 dark:text-slate-100 text-sm">{title}</h5>
+        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{desc}</p>
       </div>
     </div>
   );

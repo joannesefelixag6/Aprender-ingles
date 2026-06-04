@@ -112,7 +112,7 @@ export default function VocabularyPractice({ stats, onUpdateStats, onComplete }:
         >
           <RefreshCw size={48} />
         </motion.div>
-        <p className="text-slate-500 font-bold animate-pulse">Personalizing your vocabulary deck...</p>
+        <p className="text-slate-500 dark:text-slate-400 font-bold animate-pulse">Personalizing your vocabulary deck...</p>
       </div>
     );
   }
@@ -122,15 +122,15 @@ export default function VocabularyPractice({ stats, onUpdateStats, onComplete }:
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="max-w-md mx-auto bg-white rounded-[2.5rem] p-10 border border-slate-200 shadow-xl text-center"
+        className="max-w-md mx-auto bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 border border-slate-200 dark:border-slate-800 shadow-xl text-center"
       >
         <div className="w-20 h-20 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
           <Sparkles size={40} />
         </div>
-        <h2 className="text-3xl font-black font-display mb-2">Session Complete!</h2>
-        <p className="text-slate-500 mb-8 font-medium">You've mastered {sessionScore} new words today.</p>
+        <h2 className="text-3xl font-black font-display mb-2 text-slate-900 dark:text-slate-100">Session Complete!</h2>
+        <p className="text-slate-500 dark:text-slate-400 mb-8 font-medium">You've mastered {sessionScore} new words today.</p>
         
-        <div className="bg-indigo-50 rounded-2xl p-6 mb-8 border border-indigo-100 flex flex-wrap gap-4 items-center justify-center">
+        <div className="bg-indigo-50 dark:bg-indigo-950/50 rounded-2xl p-6 mb-8 border border-indigo-100 dark:border-indigo-900/50 flex flex-wrap gap-4 items-center justify-center">
             <div className="text-center px-4">
               <p className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">XP Earned</p>
               <p className="text-2xl font-black text-indigo-700">+{sessionScore * 20}</p>
@@ -157,10 +157,10 @@ export default function VocabularyPractice({ stats, onUpdateStats, onComplete }:
   return (
     <div className="max-w-2xl mx-auto space-y-8 pb-20">
       <div className="flex items-center justify-between px-2">
-         <button onClick={onComplete} className="text-slate-400 hover:text-slate-900 transition-colors">
+         <button onClick={onComplete} className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
             <X size={24} />
          </button>
-         <div className="flex-1 max-w-[60%] mx-6 h-2 bg-slate-200 rounded-full overflow-hidden">
+         <div className="flex-1 max-w-[60%] mx-6 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: `${(currentIndex / words.length) * 100}%` }}
@@ -176,16 +176,16 @@ export default function VocabularyPractice({ stats, onUpdateStats, onComplete }:
            initial={{ x: 50, opacity: 0 }}
            animate={{ x: 0, opacity: 1 }}
            exit={{ x: -50, opacity: 0 }}
-           className="bg-white rounded-[3rem] p-10 md:p-16 border-2 border-slate-100 shadow-2xl relative overflow-hidden group"
+           className="bg-white dark:bg-slate-900 rounded-[3rem] p-10 md:p-16 border-2 border-slate-100 dark:border-slate-800 shadow-2xl relative overflow-hidden group"
         >
           {/* Card background embellishment */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 -mr-16 -mt-16 rounded-full group-hover:scale-110 transition-transform duration-500" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 dark:bg-indigo-950/40 -mr-16 -mt-16 rounded-full group-hover:scale-110 transition-transform duration-500" />
 
           <div className="relative text-center space-y-8">
             <div className="space-y-4">
                <motion.h3 
                  layoutId="word"
-                 className="text-5xl md:text-7xl font-black text-slate-900 font-display tracking-tight"
+                 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-slate-100 font-display tracking-tight"
                 >
                  {currentWord?.word}
                </motion.h3>
@@ -199,13 +199,13 @@ export default function VocabularyPractice({ stats, onUpdateStats, onComplete }:
                   animate={{ opacity: 1, y: 0 }}
                   className="space-y-4"
                 >
-                  <p className="text-lg text-slate-600 italic leading-relaxed">"{currentWord?.example}"</p>
+                  <p className="text-lg text-slate-600 dark:text-slate-300 italic leading-relaxed">"{currentWord?.example}"</p>
                   <p className="text-sm text-slate-400 font-medium px-8">{currentWord?.definition}</p>
                 </motion.div>
               ) : (
                 <button 
                   onClick={() => setShowDefinition(true)}
-                  className="px-6 py-3 bg-slate-50 text-slate-400 rounded-2xl font-bold hover:bg-indigo-50 hover:text-indigo-600 transition-all flex items-center gap-2"
+                  className="px-6 py-3 bg-slate-50 dark:bg-slate-800 text-slate-400 dark:text-slate-300 rounded-2xl font-bold hover:bg-indigo-50 dark:hover:bg-indigo-950/50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all flex items-center gap-2"
                 >
                   <RefreshCw size={18} />
                   Reveal Meaning
@@ -219,14 +219,14 @@ export default function VocabularyPractice({ stats, onUpdateStats, onComplete }:
       <div className="grid grid-cols-2 gap-4">
         <button 
           onClick={() => handleResponse(false)}
-          className="bg-white border-2 border-slate-200 text-slate-400 p-6 rounded-[2rem] font-bold hover:border-rose-200 hover:text-rose-500 hover:bg-rose-50 transition-all flex flex-col items-center gap-2 group"
+          className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-300 p-6 rounded-[2rem] font-bold hover:border-rose-200 dark:hover:border-rose-800 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-all flex flex-col items-center gap-2 group"
         >
           <X size={32} className="group-hover:scale-110 transition-transform" />
           Still Learning
         </button>
          <button 
           onClick={() => handleResponse(true)}
-          className="bg-white border-2 border-slate-200 text-slate-400 p-6 rounded-[2rem] font-bold hover:border-emerald-200 hover:text-emerald-500 hover:bg-emerald-50 transition-all flex flex-col items-center gap-2 group"
+          className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-300 p-6 rounded-[2rem] font-bold hover:border-emerald-200 dark:hover:border-emerald-800 hover:text-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-all flex flex-col items-center gap-2 group"
         >
           <Check size={32} className="group-hover:scale-110 transition-transform" />
           I Know This

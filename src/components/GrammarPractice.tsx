@@ -82,7 +82,7 @@ export default function GrammarPractice({ stats, onUpdateStats, onComplete }: Gr
                 <PenTool size={20} />
               </div>
            </div>
-           <p className="text-slate-500 font-bold">Parsing grammar rules...</p>
+           <p className="text-slate-500 dark:text-slate-400 font-bold">Parsing grammar rules...</p>
         </div>
      );
   }
@@ -91,15 +91,15 @@ export default function GrammarPractice({ stats, onUpdateStats, onComplete }: Gr
      return (
         <motion.div 
           initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-          className="max-w-md mx-auto bg-white rounded-[2.5rem] p-10 border border-slate-200 shadow-xl text-center"
+          className="max-w-md mx-auto bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 border border-slate-200 dark:border-slate-800 shadow-xl text-center"
         >
           <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <Trophy size={40} />
           </div>
-          <h2 className="text-3xl font-black font-display mb-2">Well Done!</h2>
-          <p className="text-slate-500 mb-8 font-medium">You got {score} out of {exercises.length} correct.</p>
+          <h2 className="text-3xl font-black font-display mb-2 text-slate-900 dark:text-slate-100">Well Done!</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-8 font-medium">You got {score} out of {exercises.length} correct.</p>
           
-          <div className="bg-emerald-50 rounded-2xl p-6 mb-8 border border-emerald-100 grid grid-cols-2 gap-4">
+          <div className="bg-emerald-50 dark:bg-emerald-950/50 rounded-2xl p-6 mb-8 border border-emerald-100 dark:border-emerald-900/50 grid grid-cols-2 gap-4">
               <div className="text-center">
                 <p className="text-[10px] font-bold text-emerald-600/60 uppercase tracking-widest">XP Earned</p>
                 <p className="text-2xl font-black text-emerald-700">+{score * 50}</p>
@@ -120,10 +120,10 @@ export default function GrammarPractice({ stats, onUpdateStats, onComplete }: Gr
   return (
     <div className="max-w-3xl mx-auto pb-20 space-y-8">
       <div className="flex items-center justify-between px-2">
-         <button onClick={onComplete} className="text-slate-400 hover:text-slate-900 transition-colors">
+         <button onClick={onComplete} className="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
             <AlertCircle size={24} />
          </button>
-         <div className="flex-1 mx-6 h-2 bg-slate-200 rounded-full overflow-hidden">
+         <div className="flex-1 mx-6 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: `${(currentIndex / exercises.length) * 100}%` }}
@@ -133,13 +133,13 @@ export default function GrammarPractice({ stats, onUpdateStats, onComplete }: Gr
          <span className="text-sm font-bold text-slate-400">{currentIndex + 1} / {exercises.length}</span>
       </div>
 
-      <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-200 shadow-xl space-y-10">
+      <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 border border-slate-200 dark:border-slate-800 shadow-xl space-y-10">
          <div className="space-y-4">
             <div className="flex items-center gap-3 text-indigo-600">
                <HelpCircle size={20} />
                <span className="text-xs font-black uppercase tracking-widest">Select the correct option</span>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold font-display text-slate-800 leading-tight">
+            <h3 className="text-2xl md:text-3xl font-bold font-display text-slate-800 dark:text-slate-100 leading-tight">
               {currentEx?.question}
             </h3>
          </div>
@@ -159,16 +159,16 @@ export default function GrammarPractice({ stats, onUpdateStats, onComplete }: Gr
                   onClick={() => setSelectedOption(option)}
                   className={cn(
                     "w-full text-left p-6 rounded-2xl border-2 font-bold transition-all flex items-center justify-between group",
-                    status === 'idle' && "border-slate-100 hover:border-indigo-100 hover:bg-indigo-50/30 text-slate-600",
-                    status === 'selected' && "border-indigo-600 bg-indigo-50 text-indigo-700",
-                    status === 'correct' && "border-emerald-500 bg-emerald-50 text-emerald-700",
-                    status === 'wrong' && "border-rose-500 bg-rose-50 text-rose-700"
+                    status === 'idle' && "border-slate-100 dark:border-slate-700 hover:border-indigo-100 dark:hover:border-indigo-800 hover:bg-indigo-50/30 dark:hover:bg-indigo-950/30 text-slate-600 dark:text-slate-300",
+                    status === 'selected' && "border-indigo-600 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300",
+                    status === 'correct' && "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300",
+                    status === 'wrong' && "border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300"
                   )}
                 >
                   <div className="flex items-center gap-4">
                     <div className={cn(
                       "w-10 h-10 rounded-xl flex items-center justify-center text-sm font-black border-2 transition-colors",
-                      status === 'idle' && "border-slate-100 bg-slate-50 text-slate-400 group-hover:border-indigo-200 group-hover:bg-white group-hover:text-indigo-400",
+                      status === 'idle' && "border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-400 group-hover:border-indigo-200 dark:group-hover:border-indigo-700 group-hover:bg-white dark:group-hover:bg-slate-700 group-hover:text-indigo-400",
                       status === 'selected' && "border-indigo-600 bg-indigo-600 text-white",
                       status === 'correct' && "border-emerald-500 bg-emerald-500 text-white",
                       status === 'wrong' && "border-rose-500 bg-rose-500 text-white"
@@ -198,10 +198,10 @@ export default function GrammarPractice({ stats, onUpdateStats, onComplete }: Gr
                         {selectedOption === currentEx.correctAnswer ? <Sparkles size={20} /> : <AlertCircle size={20} />}
                      </div>
                      <div className="flex-1 space-y-1">
-                        <p className="font-bold text-slate-800">
+                        <p className="font-bold text-slate-800 dark:text-slate-100">
                           {selectedOption === currentEx.correctAnswer ? "Brilliant!" : "Not quite..."}
                         </p>
-                        <p className="text-sm text-slate-600 leading-relaxed font-medium">{currentEx.explanation}</p>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">{currentEx.explanation}</p>
                      </div>
                   </div>
                </motion.div>
@@ -214,7 +214,7 @@ export default function GrammarPractice({ stats, onUpdateStats, onComplete }: Gr
                disabled={!selectedOption}
                className={cn(
                  "w-full py-5 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 shadow-xl",
-                 !selectedOption ? "bg-slate-100 text-slate-400 cursor-not-allowed shadow-none" : "bg-indigo-600 text-white hover:bg-indigo-700 hover:translate-y-[-2px]"
+                 !selectedOption ? "bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed shadow-none" : "bg-indigo-600 text-white hover:bg-indigo-700 hover:translate-y-[-2px]"
                )}
             >
                {isConfirmed ? (currentIndex === exercises.length - 1 ? 'Show Results' : 'Next Question') : 'Check Answer'}
